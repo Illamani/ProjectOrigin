@@ -2,6 +2,7 @@
 using ProjectOrigin.Interfaces;
 using ProjectOrigin.Models.Dto;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace ProjectOrigin.Controllers
@@ -15,6 +16,7 @@ namespace ProjectOrigin.Controllers
 		{
 			_cajeroService = cajeroService;
 		}
+		//Metodos Auxiliares para creacion de usuarios
 		[HttpGet]
 		[Route("GetUsuario")]
 		public Task<TarjetaDto> GetUsuario()
@@ -33,6 +35,14 @@ namespace ProjectOrigin.Controllers
 		public Task<List<TarjetaDto>> GetUsuarios()
 		{
 			return _cajeroService.GetUsuarios();
+		}
+
+		//Metodos Principales
+		[HttpGet]
+		[Route("GetUsuarioByUsuarioTarjetaAsync")]
+		public Task<EstadoDto> GetUsuarioByUsuarioTarjetaAsync([Range(1000000000000000, 9999999999999999, ErrorMessage = "El campo debe ser un número 16 dígitos.")]  long input)
+		{
+			return _cajeroService.GetUsuarioByUsuarioTarjetaAsync(input);
 		}
 	}
 }

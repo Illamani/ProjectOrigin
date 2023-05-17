@@ -9,8 +9,8 @@ using ProjectOrigin.EntityFrameworkCore;
 namespace ProjectOrigin.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230517010209_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230517092317_stringAInt")]
+    partial class stringAInt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,11 +33,14 @@ namespace ProjectOrigin.Migrations
                     b.Property<bool>("IsBlocked")
                         .HasColumnType("bit");
 
-                    b.Property<int>("NumeroTarjeta")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PIN")
+                    b.Property<string>("NombreUsuario")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("NumeroTarjeta")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("PIN")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

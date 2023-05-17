@@ -7,14 +7,12 @@ namespace ProjectOrigin.Models.Dto
 		public int Id { get; set; }
 		public bool IsBlocked { get; set; }
 		public int Count { get; set; }
-		[RegularExpression("^[0-9]*$", ErrorMessage = "Solo se permiten números.")]
-		[MaxLength(16)]
-		[MinLength(16)]
-		public string NumeroTarjeta { get; set; }
-		[RegularExpression("^[0-9]*$", ErrorMessage = "Solo se permiten números.")]
-		[MaxLength(4)]
-		[MinLength(4)]
-		public string PIN { get; set; }
+
+		[Range(1000000000000000, 9999999999999999)]
+		public long NumeroTarjeta { get; set; }
+
+		[Range(1000, 9999)]
+		public int PIN { get; set; }
 		public string NombreUsuario { get; set; }
 	}
 }

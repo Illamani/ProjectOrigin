@@ -7,6 +7,7 @@ namespace ProjectOrigin.Interfaces
 	public interface ICajeroService
 	{
 		Task<TarjetaDto> GetUsuario();
+		Task<EstadoDto> GetUsuarioByUsuarioTarjetaAsync(long input);
 		Task<List<TarjetaDto>> GetUsuarios();
 		Task InsertUsuarios(TarjetaDto input);
 	}

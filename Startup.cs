@@ -45,7 +45,8 @@ namespace ProjectOrigin
 			var mapperConfig = new MapperConfiguration(cfg =>
 			{
 				cfg.AddProfile(new ProjectOrigin.Models.Mapper());
-				cfg.CreateMap<TarjetaDto, Tarjeta>();
+				//cfg.CreateMap<TarjetaDto, Tarjeta>();
+				//cfg.CreateMap<EstadoDto, Estado>();
 			});
 			IMapper mapper = mapperConfig.CreateMapper();
 			services.AddSingleton(mapper);
