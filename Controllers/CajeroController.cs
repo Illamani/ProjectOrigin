@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectOrigin.Interfaces;
 using ProjectOrigin.Models.Dto;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjectOrigin.Controllers
@@ -27,6 +28,12 @@ namespace ProjectOrigin.Controllers
 		public Task InsertUsuarios(TarjetaDto input)
 		{
 			return _cajeroService.InsertUsuarios(input);
+		}
+		[HttpGet]
+		[Route("GetUsuarios")]
+		public Task<List<TarjetaDto>> GetUsuarios()
+		{
+			return _cajeroService.GetUsuarios();
 		}
 	}
 }

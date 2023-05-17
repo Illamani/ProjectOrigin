@@ -2,6 +2,7 @@
 using ProjectOrigin.Interfaces;
 using ProjectOrigin.Models;
 using ProjectOrigin.Models.Dto;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,11 +18,18 @@ namespace ProjectOrigin.EntityFrameworkCore
 
 		public async Task InsertUsuarios(Tarjeta input)
 		{
-			await _context.Tarjeta.AddAsync(input);
+			var res = await _context.Tarjeta.AddAsync(input);
+
+			var resultaod = await _context.SaveChangesAsync();
+			var res1 = _context.Tarjeta.ToList();
 		}
-		public async Task<Tarjeta> GetTarjeta()
+		public async Task<Tarjeta> GetUsuario()
 		{
 			return await _context.Tarjeta.FirstOrDefaultAsync();
+		}
+		public async Task<List<Tarjeta>> GetUsuarios()
+		{
+			return await _context.Tarjeta.ToListAsync();
 		}
 	}
 }
