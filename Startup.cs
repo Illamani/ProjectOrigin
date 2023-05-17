@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +10,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProjectOrigin.EntityFrameworkCore;
+using ProjectOrigin.Interfaces;
+using ProjectOrigin.Models.Dto;
+using ProjectOrigin.Models;
+using ProjectOrigin.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +33,8 @@ namespace ProjectOrigin
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddScoped<ICajeroService, CajeroService>();
+			services.AddScoped<ICajeroRepository, CajeroRepository>();
 			services.AddDbContextPool<AppDbContext>(
 				options => options.UseSqlServer(Configuration.GetConnectionString("OriginConnection")));
 			services.AddControllers();
@@ -35,6 +42,13 @@ namespace ProjectOrigin
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProjectOrigin", Version = "v1" });
 			});
+			var mapperConfig = new MapperConfiguration(cfg =>
+			{
+				cfg.AddProfile(new ProjectOrigin.Models.Mapper());
+				cfg.CreateMap<TarjetaDto, Tarjeta>();
+			});
+			IMapper mapper = mapperConfig.CreateMapper();
+			services.AddSingleton(mapper);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

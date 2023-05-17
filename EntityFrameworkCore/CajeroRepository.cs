@@ -1,8 +1,13 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectOrigin.Interfaces;
+using ProjectOrigin.Models;
+using ProjectOrigin.Models.Dto;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjectOrigin.EntityFrameworkCore
 {
-	public class CajeroRepository
+	public class CajeroRepository : ICajeroRepository
 	{
 		private readonly AppDbContext _context;
 		public CajeroRepository(AppDbContext context)
@@ -10,9 +15,13 @@ namespace ProjectOrigin.EntityFrameworkCore
 			_context = context;
 		}
 
-		public int GetInformacionBaseDeDatos()
+		public async Task InsertUsuarios(Tarjeta input)
 		{
-			var dbContext = _context.Tarjeta.FirstOrDefault().
+			await _context.Tarjeta.AddAsync(input);
+		}
+		public async Task<Tarjeta> GetTarjeta()
+		{
+			return await _context.Tarjeta.FirstOrDefaultAsync();
 		}
 	}
 }
