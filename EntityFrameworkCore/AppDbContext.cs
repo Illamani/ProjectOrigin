@@ -9,7 +9,8 @@ namespace ProjectOrigin.EntityFrameworkCore
         public AppDbContext(DbContextOptions<AppDbContext> options)
             :base(options) { }
 
-        public DbSet<Tarjeta> Tarjeta { get; set; }
+        public DbSet<Usuario> Tarjeta { get; set; }
         public DbSet<Cuenta> Cuenta { get; set;}
+        public DbSet<Registros> Registros { get; set; }
     }
 }

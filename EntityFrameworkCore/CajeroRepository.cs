@@ -15,7 +15,7 @@ namespace ProjectOrigin.EntityFrameworkCore
 			_context = context;
 		}
 		//Metodos Auxiliares para crear Usuarios
-		public async Task InsertUsuarios(Tarjeta input)
+		public async Task InsertUsuarios(Usuario input)
 		{
 			var cuenta = new Cuenta()
 			{
@@ -29,11 +29,11 @@ namespace ProjectOrigin.EntityFrameworkCore
 			await _context.SaveChangesAsync();
 			var res1 = _context.Tarjeta.ToList();
 		}
-		public async Task<Tarjeta> GetUsuario()
+		public async Task<Usuario> GetUsuario()
 		{
 			return await _context.Tarjeta.FirstOrDefaultAsync();
 		}
-		public async Task<List<Tarjeta>> GetUsuarios()
+		public async Task<List<Usuario>> GetUsuarios()
 		{
 			return await _context.Tarjeta.ToListAsync();
 		}

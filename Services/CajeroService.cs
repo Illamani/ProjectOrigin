@@ -16,20 +16,20 @@ namespace ProjectOrigin.Services
 			_mapper = mapper;
 			_cajeroRepository = cajeroRepository;
 		}
-		public async Task InsertUsuarios(TarjetaDto input)
+		public async Task InsertUsuarios(UsuarioDto input)
         {
-            var tarjeta = _mapper.Map<TarjetaDto, Tarjeta>(input);
+            var tarjeta = _mapper.Map<UsuarioDto, Usuario>(input);
 			await _cajeroRepository.InsertUsuarios(tarjeta);
         }
-		public async Task<TarjetaDto> GetUsuario()
+		public async Task<UsuarioDto> GetUsuario()
 		{
 			var tarjeta = await _cajeroRepository.GetUsuario();
-			return _mapper.Map<Tarjeta,TarjetaDto>(tarjeta);
+			return _mapper.Map<Usuario,UsuarioDto>(tarjeta);
 		}
-		public async Task<List<TarjetaDto>> GetUsuarios()
+		public async Task<List<UsuarioDto>> GetUsuarios()
 		{
 			var tarjetaList = await _cajeroRepository.GetUsuarios();
-			return _mapper.Map<List<Tarjeta>, List<TarjetaDto>>(tarjetaList);
+			return _mapper.Map<List<Usuario>, List<UsuarioDto>>(tarjetaList);
 		}
 		public async Task<EstadoDto> GetUsuarioByUsuarioTarjetaAsync(long input)
 		{

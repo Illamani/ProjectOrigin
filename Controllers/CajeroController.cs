@@ -19,20 +19,20 @@ namespace ProjectOrigin.Controllers
 		//Metodos Auxiliares para creacion de usuarios
 		[HttpGet]
 		[Route("GetUsuario")]
-		public Task<TarjetaDto> GetUsuario()
+		public Task<UsuarioDto> GetUsuario()
 		{
 			return _cajeroService.GetUsuario();
 		}
 
 		[HttpPost]
 		[Route("InsertUsuarios")]
-		public Task InsertUsuarios(TarjetaDto input)
+		public Task InsertUsuarios(UsuarioDto input)
 		{
 			return _cajeroService.InsertUsuarios(input);
 		}
 		[HttpGet]
 		[Route("GetUsuarios")]
-		public Task<List<TarjetaDto>> GetUsuarios()
+		public Task<List<UsuarioDto>> GetUsuarios()
 		{
 			return _cajeroService.GetUsuarios();
 		}

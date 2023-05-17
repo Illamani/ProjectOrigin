@@ -7,8 +7,8 @@ namespace ProjectOrigin.Models
 	{
 		public Mapper()
 		{
-			CreateMap<Tarjeta, TarjetaDto>();
-			CreateMap<TarjetaDto, Tarjeta>();
+			CreateMap<Usuario, UsuarioDto>();
+			CreateMap<UsuarioDto, Usuario>();
 			CreateMap<Estado, EstadoDto>();
 			CreateMap<EstadoDto, Estado>();
 		}

@@ -1,4 +1,6 @@
-﻿namespace ProjectOrigin.Models
+﻿using System;
+
+namespace ProjectOrigin.Models
 {
 	public class Cuenta
 	{
@@ -6,7 +8,8 @@
 		public string NombreUsuario { get; set; }
 		public double Balance {get; set;}
 		public bool IsBlocked { get; set;}
-		public Tarjeta Tarjeta { get; set;}
-		public long NumeroTarjeta { get; set;}
+		//public Tarjeta Tarjeta { get; set;}
+		public long NumeroTarjeta { get; set; }
+		public DateTime FechaVencimiento { get; set; }
 	}
 }

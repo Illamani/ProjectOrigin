@@ -2,7 +2,7 @@
 
 namespace ProjectOrigin.Models.Dto
 {
-	public class TarjetaDto
+	public class UsuarioDto
 	{
 		public int Id { get; set; }
 		public bool IsBlocked { get; set; }
