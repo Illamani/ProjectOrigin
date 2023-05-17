@@ -44,5 +44,11 @@ namespace ProjectOrigin.Controllers
 		{
 			return _cajeroService.GetUsuarioByUsuarioTarjetaAsync(input);
 		}
+		[HttpGet]
+		[Route("GetAccessByUsuarioAsync")]
+		public Task<EstadoDto> GetAccessByUsuarioAsync(long numeroTarjeta, int PIN)
+		{
+			return _cajeroService.GetAccessByUsuarioAsync(numeroTarjeta, PIN);
+		}
 	}
 }

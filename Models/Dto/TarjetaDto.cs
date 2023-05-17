@@ -14,5 +14,6 @@ namespace ProjectOrigin.Models.Dto
 		[Range(1000, 9999)]
 		public int PIN { get; set; }
 		public string NombreUsuario { get; set; }
+		public int CuentaId { get; set; }
 	}
 }

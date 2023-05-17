@@ -10,5 +10,6 @@ namespace ProjectOrigin.EntityFrameworkCore
             :base(options) { }
 
         public DbSet<Tarjeta> Tarjeta { get; set; }
+        public DbSet<Cuenta> Cuenta { get; set;}
     }
 }

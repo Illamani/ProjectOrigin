@@ -36,5 +36,10 @@ namespace ProjectOrigin.Services
 			var tarjeta = await _cajeroRepository.GetUsuarioByUsuarioTarjetaAsync(input);
 			return _mapper.Map<Estado, EstadoDto>(tarjeta);
 		}
+		public async Task<EstadoDto> GetAccessByUsuarioAsync(long numeroTarjeta, int PIN)
+		{
+			var acceso = await _cajeroRepository.GetAccessByUsuarioAsync(numeroTarjeta, PIN);
+			return _mapper.Map<Estado, EstadoDto>(acceso);
+		}
 	}
 }

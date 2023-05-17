@@ -15,5 +15,7 @@ namespace ProjectOrigin.Models
 		[Range(1000, 9999)]
 		public int PIN { get; set; }
 		public string NombreUsuario { get; set; }
+		public Cuenta Cuenta { get; set; }
+		public int CuentaId { get; set; }
 	}
 }
