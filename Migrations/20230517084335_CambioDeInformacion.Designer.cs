@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectOrigin.EntityFrameworkCore;
 
 namespace ProjectOrigin.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230517084335_CambioDeInformacion")]
+    partial class CambioDeInformacion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +32,6 @@ namespace ProjectOrigin.Migrations
 
                     b.Property<bool>("IsBlocked")
                         .HasColumnType("bit");
-
-                    b.Property<string>("NombreUsuario")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeroTarjeta")
                         .HasMaxLength(16)

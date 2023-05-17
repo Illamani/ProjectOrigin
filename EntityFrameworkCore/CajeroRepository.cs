@@ -15,11 +15,10 @@ namespace ProjectOrigin.EntityFrameworkCore
 		{
 			_context = context;
 		}
-
+		//Metodos Auxiliares para crear Usuarios
 		public async Task InsertUsuarios(Tarjeta input)
 		{
 			var res = await _context.Tarjeta.AddAsync(input);
-
 			var resultaod = await _context.SaveChangesAsync();
 			var res1 = _context.Tarjeta.ToList();
 		}
