@@ -33,8 +33,10 @@ namespace ProjectOrigin
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddScoped<ICajeroService, CajeroService>();
-			services.AddScoped<ICajeroRepository, CajeroRepository>();
+			services.AddScoped<IUsuarioService, UsuarioService>();
+			services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+			services.AddScoped<ICuentaRepository, CuentaRepository>();
+			services.AddScoped<ICuentaService, CuentaService>();
 			services.AddDbContextPool<AppDbContext>(
 				options => options.UseSqlServer(Configuration.GetConnectionString("OriginConnection")));
 			services.AddControllers();

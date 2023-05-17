@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProjectOrigin.Services
 {
-	public class CajeroService : ICajeroService
+	public class UsuarioService : IUsuarioService
 	{
         private readonly IMapper _mapper;
-        private readonly ICajeroRepository _cajeroRepository;
-        public CajeroService(IMapper mapper, ICajeroRepository cajeroRepository)
+        private readonly IUsuarioRepository _cajeroRepository;
+        public UsuarioService(IMapper mapper, IUsuarioRepository cajeroRepository)
 		{
 			_mapper = mapper;
 			_cajeroRepository = cajeroRepository;

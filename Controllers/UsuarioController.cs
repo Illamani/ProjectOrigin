@@ -9,14 +9,13 @@ namespace ProjectOrigin.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class CajeroController : ControllerBase, ICajeroService
+	public class UsuarioController : ControllerBase, IUsuarioService
 	{
-		private readonly ICajeroService _cajeroService;
-		public CajeroController(ICajeroService cajeroService)
+		private readonly IUsuarioService _cajeroService;
+		public UsuarioController(IUsuarioService cajeroService)
 		{
 			_cajeroService = cajeroService;
 		}
-		//Metodos Auxiliares para creacion de usuarios
 		[HttpGet]
 		[Route("GetUsuario")]
 		public Task<UsuarioDto> GetUsuario()

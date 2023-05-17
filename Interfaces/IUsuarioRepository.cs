@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ProjectOrigin.Interfaces
 {
-	public interface ICajeroRepository
+	public interface IUsuarioRepository
 	{
 		Task<Estado> GetAccessByUsuarioAsync(long numeroTarjeta, int PIN);
 		Task<Usuario> GetUsuario();

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProjectOrigin.EntityFrameworkCore
 {
-	public class CajeroRepository : ICajeroRepository
+	public class UsuarioRepository : IUsuarioRepository
 	{
 		private readonly AppDbContext _context;
-		public CajeroRepository(AppDbContext context)
+		public UsuarioRepository(AppDbContext context)
 		{
 			_context = context;
 		}
