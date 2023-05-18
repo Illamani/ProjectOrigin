@@ -4,6 +4,7 @@ import { RestService } from '../rest.service';
 import { map } from 'rxjs/operators';
 import { Usuario } from '../Usuario';
 import { Router } from '@angular/router';
+import { SharedDataServiceService } from '../shared-data-service.service';
 
 @Component({
   selector: 'app-pantalla-principal',
@@ -14,6 +15,7 @@ export class PantallaPrincipalComponent implements OnInit {
   myValue: string;
 
   constructor(
+    private SharedDataServiceService: SharedDataServiceService,
     private http : HttpClient,
     private restService : RestService,
     private router: Router) { 
@@ -30,12 +32,12 @@ export class PantallaPrincipalComponent implements OnInit {
   }
   public convertirModelo(){
     this.http.get(`https://localhost:44363/api/Usuario/GetUsuarioByUsuarioTarjetaAsync?input=${this.myValue}`).pipe(map(response => {
-        // Realiza la transformación del resultado en un objeto aquí
-        return response as Usuario;
+        const variable = response as Usuario
+        this.SharedDataServiceService.valorRespuesta = variable
+        localStorage.setItem('myFinalKey', JSON.stringify(variable))
+        return variable;
       })
     ).subscribe(data => {
-      // El objeto transformado está disponible aquí
-      console.log(data);
       if(data.ok == true){
         this.router.navigateByUrl('/pantalla');
       }
