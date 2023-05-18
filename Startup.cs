@@ -23,6 +23,7 @@ namespace ProjectOrigin
 {
 	public class Startup
 	{
+		private readonly string _MyCors = "Cors";
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
@@ -40,6 +41,13 @@ namespace ProjectOrigin
 			services.AddDbContextPool<AppDbContext>(
 				options => options.UseSqlServer(Configuration.GetConnectionString("OriginConnection")));
 			services.AddControllers();
+			services.AddCors(options =>
+			{
+				options.AddPolicy(name: _MyCors, builder =>
+				{
+					builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+				});
+			});
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProjectOrigin", Version = "v1" });
@@ -67,7 +75,7 @@ namespace ProjectOrigin
 			app.UseHttpsRedirection();
 
 			app.UseRouting();
-
+			app.UseCors(_MyCors);
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>

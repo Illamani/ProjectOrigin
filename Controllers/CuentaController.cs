@@ -13,6 +13,12 @@ namespace ProjectOrigin.Controllers
             _cuentaService = cuentaService;
         }
 		[HttpGet]
+		[Route("GetPrueba")]
+		public int Get()
+		{
+			return 123;
+		}
+		[HttpGet]
 		[Route("GetBalanceAsync")]
 		public async Task<BalanceDto> GetBalanceAsync(long inputNumeroCuenta)
 		{
