@@ -15,7 +15,7 @@ export class AppComponent {
     
   }
   public cargarData(){
-    this.restService.get('https://localhost:44363/GetPrueba')
+    this.restService.get('https://localhost:44363/api/Usuario/GetUsuario')
     .subscribe(respuesta => console.log(respuesta))
   }
   // public cargarSegundaData(){
