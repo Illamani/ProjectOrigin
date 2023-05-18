@@ -15,7 +15,7 @@ namespace ProjectOrigin.EntityFrameworkCore
 		}
 		public async Task<Balance> GetBalanceAsync(long numeroTarjeta)
 		{
-			var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroTarjeta == numeroTarjeta);
+			var cuenta = await _context.Cuenta.Include(x => x.Registros).FirstOrDefaultAsync(x => x.NumeroTarjeta == numeroTarjeta);
 			if (cuenta == null) return new Balance();
 
 			var balance = new Balance()
