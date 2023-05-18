@@ -20,10 +20,14 @@ namespace ProjectOrigin.Services
 			var balance = await _cuentaRepository.GetBalanceAsync(inputNumeroCuenta);
 			return _mapper.Map<Balance, BalanceDto>(balance);
 		}
-		public async Task<RetiroDto> GetRetiroAsync(long retiroInput, long numeroTarjeta)
+		public async Task<RetiroDto> GetRetiroAsync(double retiroInput, long numeroTarjeta)
 		{
 			var retiro = await _cuentaRepository.GetRetiroAsync(retiroInput, numeroTarjeta);
 			return _mapper.Map<Retiro, RetiroDto>(retiro);
+		}
+		public async Task InsertDineroACuenta(double insertInput, long numeroTarjeta)
+		{
+			await _cuentaRepository.InsertDineroACuenta(insertInput, numeroTarjeta);
 		}
 	}
 }

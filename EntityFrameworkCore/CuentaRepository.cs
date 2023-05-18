@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectOrigin.Interfaces;
 using ProjectOrigin.Models;
+using ProjectOrigin.Models.Entities;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +14,12 @@ namespace ProjectOrigin.EntityFrameworkCore
 		public CuentaRepository(AppDbContext context)
 		{
 			_context = context;
+		}
+		public async Task InsertDineroACuenta(double insertInput, long numeroTarjeta)
+		{
+			var cuenta = await _context.Cuenta.Include(x => x.Registros).FirstOrDefaultAsync(x => x.NumeroTarjeta == numeroTarjeta);
+			cuenta.Balance += insertInput;
+			await _context.SaveChangesAsync();
 		}
 		public async Task<Balance> GetBalanceAsync(long numeroTarjeta)
 		{
@@ -26,9 +34,9 @@ namespace ProjectOrigin.EntityFrameworkCore
 			};
 			return balance;
 		}
-		public async Task<Retiro> GetRetiroAsync(long retiroInput, long numeroTarjeta)
+		public async Task<Retiro> GetRetiroAsync(double retiroInput, long numeroTarjeta)
 		{
-			var cuenta = await _context.Cuenta.FirstOrDefaultAsync(x => x.NumeroTarjeta == numeroTarjeta);
+			var cuenta = await _context.Cuenta.Include(x => x.Usuario).FirstOrDefaultAsync(x => x.NumeroTarjeta == numeroTarjeta);
 			if (cuenta.Balance - retiroInput < 0)
 			{
 				return new Retiro()
@@ -38,6 +46,13 @@ namespace ProjectOrigin.EntityFrameworkCore
 					OperacionExitosa = false
 				};
 			}
+			var registro = new Registros()
+			{
+				NumeroTarjeta = cuenta.NumeroTarjeta,
+				CodigoOperacion = 1,
+				OperacionTiempo = DateTime.Now,
+			};
+			_context.Registros.Add(registro);
 			cuenta.Balance -= retiroInput;
 			await _context.SaveChangesAsync();
 			return new Retiro()

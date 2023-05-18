@@ -6,6 +6,7 @@ namespace ProjectOrigin.Interfaces
 	public interface ICuentaService
 	{
 		Task<BalanceDto> GetBalanceAsync(long inputNumeroCuenta);
-		Task<RetiroDto> GetRetiroAsync(long retiroInput, long numeroTarjeta);
+		Task<RetiroDto> GetRetiroAsync(double retiroInput, long numeroTarjeta);
+		Task InsertDineroACuenta(double insertInput, long numeroTarjeta);
 	}
 }

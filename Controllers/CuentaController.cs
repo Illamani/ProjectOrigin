@@ -21,9 +21,15 @@ namespace ProjectOrigin.Controllers
 
 		[HttpGet]
 		[Route("GetRetiroAsync")]
-		public async Task<RetiroDto> GetRetiroAsync(long retiro, long numeroTarjeta)
+		public async Task<RetiroDto> GetRetiroAsync(double retiro, long numeroTarjeta)
 		{
 			return await _cuentaService.GetRetiroAsync(retiro, numeroTarjeta);
+		}
+		[HttpPut]
+		[Route("InsertDineroACuenta")]
+		public async Task InsertDineroACuenta(double insertInput, long numeroTarjeta)
+		{
+			await _cuentaService.InsertDineroACuenta(insertInput, numeroTarjeta);
 		}
 	}
 }
