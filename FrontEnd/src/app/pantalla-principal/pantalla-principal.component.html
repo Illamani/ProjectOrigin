@@ -1,0 +1,5 @@
+<div class="center-container">
+    <h1>Ingrese su información</h1>
+    <input type="text" [(ngModel)]="myValue" (change)="sendData(myValue)" placeholder="Ingrese aquí" />
+    <button (click)="sendData(myValue)" >Aceptar</button>
+</div>

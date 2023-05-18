@@ -18,4 +18,7 @@ export class AppComponent {
     this.restService.get('https://localhost:44363/GetPrueba')
     .subscribe(respuesta => console.log(respuesta))
   }
+  // public cargarSegundaData(){
+  //   this.restService.get.
+  // }
 }
