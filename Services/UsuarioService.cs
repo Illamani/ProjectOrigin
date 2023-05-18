@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using ProjectOrigin.Interfaces;
-using ProjectOrigin.Models;
 using ProjectOrigin.Models.Dto;
+using ProjectOrigin.Models.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjectOrigin.Services
 {
-	public class UsuarioService : IUsuarioService
+    public class UsuarioService : IUsuarioService
 	{
         private readonly IMapper _mapper;
         private readonly IUsuarioRepository _cajeroRepository;

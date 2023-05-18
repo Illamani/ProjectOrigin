@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectOrigin.Interfaces;
-using ProjectOrigin.Models;
+using ProjectOrigin.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjectOrigin.EntityFrameworkCore
 {
-	public class UsuarioRepository : IUsuarioRepository
+    public class UsuarioRepository : IUsuarioRepository
 	{
 		private readonly AppDbContext _context;
 		public UsuarioRepository(AppDbContext context)
@@ -23,6 +24,7 @@ namespace ProjectOrigin.EntityFrameworkCore
 				IsBlocked = input.IsBlocked,
 				NombreUsuario = input.NombreUsuario,
 				Balance = 1000,
+				FechaVencimiento = DateTime.Now.AddYears(7)
 			};
 			await _context.Cuenta.AddAsync(cuenta);
 			await _context.Tarjeta.AddAsync(input);

@@ -1,10 +1,10 @@
-﻿using ProjectOrigin.Models;
+﻿using ProjectOrigin.Models.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjectOrigin.Interfaces
 {
-	public interface IUsuarioRepository
+    public interface IUsuarioRepository
 	{
 		Task<Estado> GetAccessByUsuarioAsync(long numeroTarjeta, int PIN);
 		Task<Usuario> GetUsuario();

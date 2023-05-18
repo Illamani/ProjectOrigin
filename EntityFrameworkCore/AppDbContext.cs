@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectOrigin.Models;
+using ProjectOrigin.Models.Entities;
 
 namespace ProjectOrigin.EntityFrameworkCore
 {
-	public class AppDbContext : DbContext
+    public class AppDbContext : DbContext
 	{
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
