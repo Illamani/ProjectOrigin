@@ -11,13 +11,13 @@ export class AppComponent {
   constructor(private restService : RestService) {    
   }
   ngOnInit(): void {
-    this.cargarData()
+    // this.cargarData()
     
   }
-  public cargarData(){
-    this.restService.get('https://localhost:44363/api/Usuario/GetUsuario')
-    .subscribe(respuesta => console.log(respuesta))
-  }
+  // public cargarData(){
+  //   this.restService.get('https://localhost:44363/api/Usuario/GetUsuario')
+  //   .subscribe(respuesta => console.log(respuesta))
+  // }
   // public cargarSegundaData(){
   //   this.restService.get.
   // }

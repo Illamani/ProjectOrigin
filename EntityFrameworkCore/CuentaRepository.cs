@@ -37,6 +37,7 @@ namespace ProjectOrigin.EntityFrameworkCore
 		public async Task<Retiro> GetRetiroAsync(double retiroInput, long numeroTarjeta)
 		{
 			var cuenta = await _context.Cuenta.Include(x => x.Usuario).FirstOrDefaultAsync(x => x.NumeroTarjeta == numeroTarjeta);
+			if(cuenta == null) return null;
 			if (cuenta.Balance - retiroInput < 0)
 			{
 				return new Retiro()
