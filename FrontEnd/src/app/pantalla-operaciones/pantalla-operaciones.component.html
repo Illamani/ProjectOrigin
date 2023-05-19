@@ -1,0 +1,25 @@
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+    </style>
+    <body>
+    <div class="container">
+        <button class="button" [(ngModel)]="ValorNumeroTarjeta" (click)="RedirectBalance()">Balance</button>
+        <button class="button" [(ngModel)]="ValorNumeroTarjeta" (click)="RedirectRetiro()">Retiro</button>
+    </div>
+    </body>

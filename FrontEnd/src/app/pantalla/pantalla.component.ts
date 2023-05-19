@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SharedDataServiceService } from '../shared-data-service.service';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../Usuario';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http'
-
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-pantalla',
   templateUrl: './pantalla.component.html',
@@ -13,14 +14,7 @@ import { HttpClient } from '@angular/common/http'
   providedIn: 'root'
 })
 export class PantallaComponent implements OnInit {
-  constructor(private sharedDataService: SharedDataServiceService, private http : HttpClient) { 
-    
-    // const storedValorRespuesta = localStorage.getItem(this.clave);
-    // console.log(storedValorRespuesta)
-    // if(storedValorRespuesta){
-    //   this.valor = JSON.parse(storedValorRespuesta)
-    //   this.intValor = this.valor?.numeroTarjeta
-    // }
+  constructor(private sharedDataService: SharedDataServiceService, private http : HttpClient, private router: Router) { 
   }
   clave : string = 'myFinalKey';
   myValue: string = "";
@@ -29,8 +23,6 @@ export class PantallaComponent implements OnInit {
   ValorNumeroTarjeta : number | undefined = this.valor?.numeroTarjeta
 
   ngOnInit(): void {
-    // localStorage.setItem(this.clave, JSON.stringify(this.valor))
-    // console.log(`Llave: ${this.clave}, Valor: ${value}`);
     const storedValorRespuesta = localStorage.getItem(this.clave);
     if(storedValorRespuesta){
       this.valor = JSON.parse(storedValorRespuesta)
@@ -41,6 +33,15 @@ export class PantallaComponent implements OnInit {
   }
   public GetAccessByUsuarioAsync(){
     this.http.get(`https://localhost:44363/api/Usuario/GetAccessByUsuarioAsync?numeroTarjeta=${this.ValorNumeroTarjeta}&PIN=${this.PIN}`)
-    .subscribe(respuesta => console.log(respuesta))
+    .pipe(map(response => {
+      const variable = response as Usuario
+      this.sharedDataService.valorRespuesta = variable
+      localStorage.setItem('myFinalKey', JSON.stringify(variable))
+      console.log(variable)
+      return variable;
+    }))
+    .subscribe(respuesta => {
+      this.router.navigateByUrl('/pantallaOperacion')
+    })
   }
 }

@@ -35,6 +35,7 @@ export class PantallaPrincipalComponent implements OnInit {
         const variable = response as Usuario
         this.SharedDataServiceService.valorRespuesta = variable
         localStorage.setItem('myFinalKey', JSON.stringify(variable))
+        console.log(variable)
         return variable;
       })
     ).subscribe(data => {
@@ -43,5 +44,5 @@ export class PantallaPrincipalComponent implements OnInit {
       }
     });
   }
-  
+
 }
