@@ -16,19 +16,15 @@ import { map } from 'rxjs/operators';
 export class PantallaComponent implements OnInit {
   constructor(private sharedDataService: SharedDataServiceService, private http : HttpClient, private router: Router) { 
   }
-  clave : string = 'myFinalKey';
-  myValue: string = "";
   PIN : number | null = null;
   valor : Usuario | null = this.sharedDataService.valorRespuesta
   ValorNumeroTarjeta : number | undefined = this.valor?.numeroTarjeta
 
   ngOnInit(): void {
-    const storedValorRespuesta = localStorage.getItem(this.clave);
+    const storedValorRespuesta = localStorage.getItem('myFinalKey');
     if(storedValorRespuesta){
       this.valor = JSON.parse(storedValorRespuesta)
-      console.log(`Este valor viene del storage ${this.valor}`);
       this.ValorNumeroTarjeta = this.valor?.numeroTarjeta
-      console.log(this.ValorNumeroTarjeta);
     }
   }
   public GetAccessByUsuarioAsync(){
@@ -37,12 +33,15 @@ export class PantallaComponent implements OnInit {
       const variable = response as Usuario
       this.sharedDataService.valorRespuesta = variable
       localStorage.setItem('myFinalKey', JSON.stringify(variable))
-      console.log(variable)
       return variable;
     }))
     .subscribe(respuesta => {
-      console.log(respuesta)
-      this.router.navigateByUrl('/pantallaOperacion')
+      if(respuesta.ok == true){
+        this.router.navigateByUrl('/pantallaOperacion')
+      }
+      else{
+        alert(`Operacion Fallida : ${respuesta.mensaje}`)
+      }
     })
   }
 }

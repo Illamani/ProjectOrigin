@@ -11,12 +11,11 @@ export class PantallaOperacionesComponent implements OnInit {
 
   constructor(private sharedDataService: SharedDataServiceService,private router: Router) { }
 
-  clave : string = 'myFinalKey';
   valor : Usuario | null = this.sharedDataService.valorRespuesta
   ValorNumeroTarjeta : number | undefined = this.valor?.numeroTarjeta
 
   ngOnInit(): void {
-    const storedValorRespuesta = localStorage.getItem(this.clave);
+    const storedValorRespuesta = localStorage.getItem('myFinalKey');
     if(storedValorRespuesta){
       this.valor = JSON.parse(storedValorRespuesta)
       console.log(`Este valor viene del storage ${this.valor}`);
@@ -24,7 +23,7 @@ export class PantallaOperacionesComponent implements OnInit {
       console.log(this.ValorNumeroTarjeta);
     }
   }
-  public RedirectBalance(){
+  public RedirectBalance(){    
     this.router.navigateByUrl('/pantallaBalance')
   }
   public RedirectRetiro(){

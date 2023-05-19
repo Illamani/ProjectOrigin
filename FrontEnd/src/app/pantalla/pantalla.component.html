@@ -22,5 +22,5 @@
     <h2>Ingrese su PIN</h2>
     <input type="number" [(ngModel)]="ValorNumeroTarjeta" readonly>
     <input type="text" oninput="this.value = this.value.replace(/[^0-9]-/g, '')" maxlength="4" [(ngModel)]="PIN" placeholder="Ingrese su PIN">
-    <button (click)="GetAccessByUsuarioAsync()">Botón</button>
+    <button (click)="GetAccessByUsuarioAsync()">Ingresar</button>
 </div>

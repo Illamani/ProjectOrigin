@@ -22,33 +22,34 @@ export class PantallaRetiroComponent implements OnInit {
   constructor(private router: Router,private http : HttpClient,private sharedDataService: SharedDataServiceService,) { }
 
   ngOnInit(): void {
-    const storedValorRespuesta = localStorage.getItem('balanceKey');
+    const storedValorRespuesta = localStorage.getItem('myFinalKey');
     if(storedValorRespuesta){
       this.valor = JSON.parse(storedValorRespuesta)
-      // console.log(`Este valor viene del storage ${this.valor}`);
       this.ValorNumeroTarjeta = this.valor?.numeroTarjeta
     }
   }
   public VolverAtras(){
     this.router.navigateByUrl('/pantallaOperacion')
   }
-  public retirarDinero(){
+  public retirarDinero(){ 
     this.http.get(`https://localhost:44363/GetRetiroAsync?retiro=${this.valorRetirar}&numeroTarjeta=${this.ValorNumeroTarjeta}`).pipe(map(response => {
         const variable = response as Retiro
         this.sharedDataService.sharedRetiro = variable
         this.RetiroObjetoString = JSON.stringify(variable)
         const data = JSON.parse(this.RetiroObjetoString);
         this.retiroObjeto = data as Retiro;
-        localStorage.setItem('myFinalKey', JSON.stringify(variable))
         return variable;
       })
     ).subscribe(data => {
+      if(this.valorRetirar == 0){
+        alert("Debe ingresar un valor")
+      }
       if(this.retiroObjeto?.operacionExitosa == true){
         alert(`OperacionExitosa : ${this.retiroObjeto?.operacionDescripcion}`);
         this.router.navigateByUrl('/pantallaOperacion');
       }
       else{
-        alert(`OpeacionFallida : ${this.retiroObjeto?.operacionDescripcion}`);
+        alert(`OperacionFallida : ${this.retiroObjeto?.operacionDescripcion}`);
       }
     });
   }

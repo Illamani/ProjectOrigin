@@ -14,9 +14,6 @@ export class PantallaBalanceComponent implements OnInit {
 
   constructor(private http : HttpClient, private sharedDataService: SharedDataServiceService,  private router: Router) { }
 
-  clave : string = 'balanceKey';
-  myValue: string = "";
-  PIN : number = 0;
   valor : Usuario | null = this.sharedDataService.valorRespuesta
   ValorNumeroTarjeta : number | undefined = this.valor?.numeroTarjeta
   BalanceInterface : balance | null = null;
@@ -24,12 +21,11 @@ export class PantallaBalanceComponent implements OnInit {
   fechaVencimientoTarjeta : Date | null = null;
 
   ngOnInit(): void {
-    const storedValorRespuesta = localStorage.getItem(this.clave);
+    const storedValorRespuesta = localStorage.getItem('myFinalKey');
     if(storedValorRespuesta){
       this.valor = JSON.parse(storedValorRespuesta)      
       this.ValorNumeroTarjeta = this.valor?.numeroTarjeta
     }
-    console.log(this.balance);
     this.GetAccessByUsuarioAsync();
   }
 
@@ -37,13 +33,11 @@ export class PantallaBalanceComponent implements OnInit {
     console.log(this.ValorNumeroTarjeta)
     this.http.get(`https://localhost:44363/GetBalanceAsync?inputNumeroCuenta=${this.ValorNumeroTarjeta}`)
     .pipe(map(response => {
-      console.log(`El valor que retorna es ` , response)
       const variable = response as balance
       this.sharedDataService.sharedBalance = variable
       this.BalanceInterface = variable
       this.balance = this.BalanceInterface.balanceTotal
-      this.fechaVencimientoTarjeta = this.BalanceInterface.fechaVencimiento
-      localStorage.setItem('balanceKey', JSON.stringify(variable))
+      this.fechaVencimientoTarjeta =  this.BalanceInterface.fechaVencimiento
       return variable;
     }))
     .subscribe(respuesta => {

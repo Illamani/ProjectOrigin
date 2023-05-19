@@ -31,12 +31,12 @@ export class PantallaPrincipalComponent implements OnInit {
     .subscribe(respuesta => console.log(respuesta))
   }
   public convertirModelo(){
-    console.log(parseInt(this.myValue.replace(/-/g, "")));
     this.http.get(`https://localhost:44363/api/Usuario/GetUsuarioByUsuarioTarjetaAsync?input=${parseInt(this.myValue.replace(/-/g, ""))}`).pipe(map(response => {
         const variable = response as Usuario
         this.SharedDataServiceService.valorRespuesta = variable
-        localStorage.setItem('myFinalKey', JSON.stringify(variable))
         console.log(variable)
+        localStorage.setItem('myFinalKey', JSON.stringify(variable))
+        // console.log(localStorage.getItem('myFinalKey'))
         return variable;
       })
     ).subscribe(data => {
