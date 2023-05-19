@@ -18,7 +18,7 @@ export class PantallaComponent implements OnInit {
   }
   clave : string = 'myFinalKey';
   myValue: string = "";
-  PIN : number = 0;
+  PIN : number | null = null;
   valor : Usuario | null = this.sharedDataService.valorRespuesta
   ValorNumeroTarjeta : number | undefined = this.valor?.numeroTarjeta
 

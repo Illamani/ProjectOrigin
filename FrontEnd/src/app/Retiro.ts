@@ -1,5 +1,5 @@
 export interface Retiro{
-    OperacionExitosa : boolean,
-    OperacionDescripcion : string,
-    DineroRetirado : number
+    dineroRetirado : number,
+    operacionDescripcion : string,
+    operacionExitosa : boolean,
 }

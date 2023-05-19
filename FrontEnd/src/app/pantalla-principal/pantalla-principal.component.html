@@ -7,11 +7,14 @@
       height: 100vh;
       background-color: #f2f2f2;
     }
+    input{
+      width: 220px;
+    }
   </style>
   
   <div class="center-container">
     <h1>Ingrese su numero de tarjeta</h1>
-    <input type="text" [(ngModel)]="myValue" (change)="sendData(myValue)" placeholder="Ingrese aquí" />
+    <input type="text" oninput="this.value = this.value.replace(/[^0-9]-/g, '')" maxlength="19" [(ngModel)]="myValue" id="inputTarjetaNum" (input)="formatNumber()" placeholder="Ingrese aquí su numero de tarjeta" />
     <button (click)="convertirModelo()">Aceptar</button>
   </div>
   

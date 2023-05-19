@@ -31,7 +31,8 @@ export class PantallaPrincipalComponent implements OnInit {
     .subscribe(respuesta => console.log(respuesta))
   }
   public convertirModelo(){
-    this.http.get(`https://localhost:44363/api/Usuario/GetUsuarioByUsuarioTarjetaAsync?input=${this.myValue}`).pipe(map(response => {
+    console.log(parseInt(this.myValue.replace(/-/g, "")));
+    this.http.get(`https://localhost:44363/api/Usuario/GetUsuarioByUsuarioTarjetaAsync?input=${parseInt(this.myValue.replace(/-/g, ""))}`).pipe(map(response => {
         const variable = response as Usuario
         this.SharedDataServiceService.valorRespuesta = variable
         localStorage.setItem('myFinalKey', JSON.stringify(variable))
@@ -42,7 +43,22 @@ export class PantallaPrincipalComponent implements OnInit {
       if(data.ok == true){
         this.router.navigateByUrl('/pantalla');
       }
+      else {
+        alert(`Mensaje de alerta: ${data.mensaje}`);
+      }
     });
   }
-
+  public formatNumber() {
+    const input = document.getElementById('inputTarjetaNum') as HTMLInputElement;
+    let value = input?.value.replace(/\D/g, '');
+    let formattedValue = '';
+  
+    for (let i = 0; i < value.length; i++) {
+      if (i > 0 && i % 4 === 0) {
+        formattedValue += '-';
+      }
+      formattedValue += value[i];
+    }  
+    input.value = formattedValue;
+  }
 }
