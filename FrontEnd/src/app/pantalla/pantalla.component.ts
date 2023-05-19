@@ -41,6 +41,7 @@ export class PantallaComponent implements OnInit {
       return variable;
     }))
     .subscribe(respuesta => {
+      console.log(respuesta)
       this.router.navigateByUrl('/pantallaOperacion')
     })
   }
