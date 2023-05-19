@@ -43,4 +43,5 @@ export class PantallaPrincipalComponent implements OnInit {
       }
     });
   }
+  
 }
